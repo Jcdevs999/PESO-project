@@ -126,278 +126,137 @@ const Page = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="">
       <p className="font-bold text-2xl m-2 mb-8 uppercase">Data Management</p>
-      <div className="border border-black rounded-lg p-6 mx-10 my-8">
-        <div className="flex items-center justify-end">
-          <div className="flex items-center">
-            <input
-              type="file"
-              multiple
-              onChange={onSelectedFile}
-              accept=".csv, .xls, .xlsx"
-              className="hidden"
-              id="fileUpload"
-            />
-            <label
-              htmlFor="fileUpload"
-              className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
-            >
-              <img
-                src="/adminfolder/open-folder.png"
-                height={35}
-                width={35}
-                alt="Upload"
-              />
-            </label>
-            <button
-              className="ml-2 bg-white border-2 border-black text-white p-2 rounded-lg hover:bg-blue-600 transition"
-              onClick={uploadFiles}
-            >
-              <img
-                src="/adminfolder/uploadCSV.png"
-                height={35}
-                width={35}
-                alt="Upload"
-              />
-            </button>
-            </div>
-        </div>
-
-        {uploadStatus && (
-          <div
-            className={`p-4 mb-6 rounded-lg text-white ${
-              uploadStatus.includes("successful") ? "bg-green-500" : "bg-red-500"
-            }`}
-          >
-            {uploadStatus}
-          </div>
-        )}
-
-        <div>
-          <h3 className="text-lg font-semibold mb-4">UPLOAD FILES</h3>
-          <table className="min-w-full border-collapse border border-black rounded-lg">
-            <thead>
-              <tr>
-                <th className="border border-black p-3 bg-blue-300 text-center text-black uppercase">File Name</th>
-                <th className="border border-black p-3 bg-blue-300 text-center text-black uppercase">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fileList.length > 0 ? (
-                fileList.map((file, index) => (
-                  <tr key={index}>
-                    <td className="border border-black p-3">{file.name}</td>
-                    <td className="border border-black p-3">
-                      <button
-                        className="bg-red-500 text-white p-2 hover:bg-red-400"
-                        onClick={() => deleteFile(file.name)}
-                      >
-                        REMOVE
-                      </button>
+      <div className="flex w-full space-x-6">
+        {/* Left Section */}
+        <div className="flex flex-col w-full h-full border border-black rounded-lg p-6">
+          <div className="flex-grow pb-10">
+            <h3 className="text-lg font-semibold mb-4">UPLOAD FILES</h3>
+            <table className="min-w-full border-collapse border border-black rounded-lg">
+              <thead>
+                <tr>
+                  <th className="border border-black p-3 bg-blue-300 text-center text-black uppercase">
+                    File Name
+                  </th>
+                  <th className="border border-black p-3 bg-blue-300 text-center text-black uppercase">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {fileList.length > 0 ?
+                  fileList.map((file, index) => (
+                    <tr key={index}>
+                      <td className="border border-black p-3">{file.name}</td>
+                      <td className="border border-black p-3">
+                        <button
+                          className="bg-red-500 text-white p-2 hover:bg-red-400"
+                          onClick={() => deleteFile(file.name)}
+                        >
+                          REMOVE
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                : <tr>
+                    <td
+                      colSpan={2}
+                      className="border border-black rounded-lg p-3 text-center"
+                    >
+                      No files selected
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={2} className="border border-black rounded-lg p-3 text-center">
-                    No files selected
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div className="flex items-center justify-end">
+            <div className="flex items-center">
+              <input
+                type="file"
+                multiple
+                onChange={onSelectedFile}
+                accept=".csv, .xls, .xlsx"
+                className="hidden"
+                id="fileUpload"
+              />
+              <label
+                htmlFor="fileUpload"
+                className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
+              >
+                <img
+                  src="/adminfolder/open-folder.png"
+                  height={35}
+                  width={35}
+                  alt="Upload"
+                />
+              </label>
+              <button
+                className="ml-2 bg-white border-2 border-black text-white p-2 rounded-lg hover:bg-blue-600 transition"
+                onClick={uploadFiles}
+              >
+                <img
+                  src="/adminfolder/uploadCSV.png"
+                  height={35}
+                  width={35}
+                  alt="Upload"
+                />
+              </button>
+            </div>
+          </div>
+
+          {uploadStatus && (
+            <div
+              className={`p-4 mt-12 rounded-lg text-white ${
+                uploadStatus.includes("successful") ? "bg-green-500" : (
+                  "bg-red-500"
+                )
+              }`}
+            >
+              {uploadStatus}
+            </div>
+          )}
+        </div>
+
+        {/* Right Section */}
+        <div className="flex flex-col w-full h-full">
+          <div className="border border-black rounded-lg p-2 flex-grow">
+            {/* EventLog Component */}
+            <EventLog events={events} />
+
+            {/* Buttons for Clearing Logs and Downloading PDF */}
+            <div className="flex items-center justify-end">
+              <div className="flex justify-end mr-4 mb-4 mt-5 ">
+                <button
+                  onClick={clearEventLogs}
+                  className="bg-white border-2 border-black text-white mr-2 p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
+                >
+                  <img
+                    src="/adminfolder/clear.png"
+                    height={35}
+                    width={35}
+                    alt="Clear"
+                  />
+                </button>
+                <button
+                  onClick={downloadPDF}
+                  className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
+                >
+                  <img
+                    src="/adminfolder/download-pdf.png"
+                    height={35}
+                    width={35}
+                    alt="Download PDF"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="p-4">
-      <div className="border border-black rounded-lg p-6">
-      {/* EventLog Component */}
-      <EventLog events={events} />
-
-      {/* Buttons for Clearing Logs and Downloading PDF */}
-      <div className="mt-4 flex space-x-4 justify-end">
-        <button
-          onClick={clearEventLogs}
-          className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
-          >
-            <img
-                src="/adminfolder/clear.png"
-                height={35}
-                width={35}
-                alt="Upload"
-           /> 
-        </button>
-        <button
-          onClick={downloadPDF}
-          className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
-        >
-            <img
-                src="/adminfolder/download-pdf.png"
-                height={35}
-                width={35}
-                alt="Upload"
-            /> 
-        </button>
-      </div>
-      </div>
-    </div>
     </div>
   );
 };
 
 export default Page;
-
-
-// "use client";
-
-// import React, { useState } from "react";
-
-// const Page = () => {
-//   const [fileList, setFileList] = useState<any[]>([]);
-//   const [uploadedFiles, setUploadedFiles] = useState<any[]>([]); // To store uploaded files
-//   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
-
-//   const onSelectedFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const fileList = event.target.files; // `fileList` is of type FileList | null
-//     if (fileList) {
-//       // Accumulate selected files with existing ones
-//       setFileList((prevFiles) => [...prevFiles, ...Array.from(fileList)]);
-//     }
-//   };
-
-//   const deleteFile = (fileName: string) => {
-//     setFileList((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
-//   };
-
-//   const deleteUploadedFile = (fileName: string) => {
-//     setUploadedFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
-//   };
-
-//   const uploadFiles = async () => {
-//     const formData = new FormData();
-
-//     fileList.forEach((file) => {
-//       formData.append("files", file);
-//     });
-
-//     try {
-//       // Send the files to the server
-//       const response = await fetch("/api/upload", {
-//         method: "POST",
-//         body: formData,
-//       });
-
-//       const result = await response.json();
-//       setUploadStatus(result.msg || "Upload successful");
-//       setUploadedFiles((prevFiles) => [...prevFiles, ...fileList]); // Add files to the uploaded history
-//       setFileList([]); // Clear the file list after successful upload
-
-//       // Clear the upload status after 5 seconds
-//       setTimeout(() => {
-//         setUploadStatus(null);
-//       }, 5000);
-//     } catch (err) {
-//       console.error("Error uploading files:", err);
-//       setUploadStatus("Error uploading files");
-
-//       // Clear the error message after 5 seconds
-//       setTimeout(() => {
-//         setUploadStatus(null);
-//       }, 5000);
-//     }
-//   };
-
-//   return (
-//     <div className="p-4">
-//       <p className="font-bold text-2xl m-2 mb-8 uppercase">Data Management</p>
-//       <div className="border border-black rounded-lg p-6 mx-10 my-8">
-//         <div className="flex justify-between items-center mb-6">
-//           <h2 className="text-xl font-semibold uppercase"></h2>
-//           <div className="flex items-center">
-//             <input
-//               type="file"
-//               multiple
-//               onChange={onSelectedFile}
-//               accept=".csv, .xls, .xlsx"
-//               className="hidden"
-//               id="fileUpload"
-//             />
-//             <label
-//               htmlFor="fileUpload"
-//               className="bg-white border-2 border-black text-white p-2 rounded-lg cursor-pointer hover:bg-blue-600 transition"
-//             >
-//               <img
-//                 src="/adminfolder/open-folder.png"
-//                 height={35}
-//                 width={35}
-//                 alt="Upload"
-//               />
-//             </label>
-//             <button
-//               className="ml-2 bg-white border-2 border-black text-white p-2 rounded-lg hover:bg-blue-600 transition"
-//               onClick={uploadFiles}
-//             >
-//               <img
-//                 src="/adminfolder/uploadCSV.png"
-//                 height={35}
-//                 width={35}
-//                 alt="Upload"
-//               />
-//             </button>
-//           </div>
-//         </div>
-
-//         {uploadStatus && (
-//           <div
-//             className={`p-4 mb-6 rounded-lg text-white ${
-//               uploadStatus.includes("successful")
-//                 ? "bg-green-500"
-//                 : "bg-red-500"
-//             }`}
-//           >
-//             {uploadStatus}
-//           </div>
-//         )}
-
-//         {/* Display the list of selected files before upload */}
-//         <div>
-//           <h3 className="text-lg font-semibold mb-4">UPLOAD FILES</h3>
-//           <table className="min-w-full border-collapse border border-black rounded-lg">
-//             <thead>
-//               <tr>
-//                 <th className="border border-black p-3 bg-gray-300 text-center text-black uppercase">File Name</th>
-//                 <th className="border border-black p-3 bg-gray-300 text-center text-black uppercase">Action</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {fileList.length > 0 ? (
-//                 fileList.map((file, index) => (
-//                   <tr key={index}>
-//                     <td className="border border-black p-3">{file.name}</td>
-//                     <td className="border border-black p-3">
-//                       <button
-//                         className="bg-red-500 text-white p-2 hover:bg-red-400"
-//                         onClick={() => deleteFile(file.name)}
-//                       >
-//                         REMOVE
-//                       </button>
-//                     </td>
-//                   </tr>
-//                 ))
-//               ) : (
-//                 <tr>
-//                   <td colSpan={2} className="border border-black rounded-lg p-3 text-center">
-//                     No files selected
-//                   </td>
-//                 </tr>
-//               )}
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Page;

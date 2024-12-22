@@ -68,20 +68,71 @@ export default function RootLayout({
         <div className="flex items-left gap-6 flex-col w-full">
           <div className="ml-5">
             <Link href="/admindb">
-              <img src="/pics/qc_logo.png" alt="Quezon City logo" width="150" height="150" />
+              <img
+                src="/pics/qc_logo.png"
+                alt="Quezon City logo"
+                width="150"
+                height="150"
+                className="transition-opacity duration-500 ease-in-out hover:opacity-80"
+              />
             </Link>
           </div>
-          <Link className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2" href="/admindb">
-            <img src="/adminfolder/barchart.png" height={25} width={25} alt="" />
+
+          {/* Sidebar Links with Hover Animations */}
+          <Link
+            className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+            href="/admindb"
+          >
+            <img
+              src="/adminfolder/barchart.png"
+              height={25}
+              width={25}
+              alt=""
+            />
             <p className="text-sm font-semibold uppercase">Admin Dashboard</p>
           </Link>
-          <Link className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2" href="/admindb/datamanage">
+          <Link
+            className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+            href="/admindb/datamanage"
+          >
             <img src="/adminfolder/folder.png" height={25} width={25} alt="" />
             <p className="text-sm font-semibold uppercase">Data Management</p>
           </Link>
-          <Link className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2" href="/admindb/graph">
-            <img src="/adminfolder/linechart.png" height={25} width={25} alt="" />
+          <Link
+            className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+            href="/admindb/graph"
+          >
+            <img
+              src="/adminfolder/linechart.png"
+              height={25}
+              width={25}
+              alt=""
+            />
             <p className="text-sm font-semibold uppercase">Graph</p>
+          </Link>
+          <Link
+            className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+            href="/admindb/userdoc"
+          >
+            <img
+              src="/adminfolder/linechart.png"
+              height={25}
+              width={25}
+              alt=""
+            />
+            <p className="text-sm font-semibold uppercase">User Management</p>
+          </Link>
+          <Link
+            className="hover:bg-slate-500 rounded-xl flex items-center gap-2 bg-slate-200 p-2 transition-all duration-300 ease-in-out transform hover:scale-105"
+            href="/admindb/settings"
+          >
+            <img
+              src="/adminfolder/linechart.png"
+              height={25}
+              width={25}
+              alt=""
+            />
+            <p className="text-sm font-semibold uppercase">Profile Settings</p>
           </Link>
         </div>
       </div>
@@ -92,7 +143,7 @@ export default function RootLayout({
           <div className="flex items-center space-x-4">
             <Link href="/user/">
               <img
-                className="p-1 border-2 rounded-lg bg-white border-black"
+                className="p-1 border-2 rounded-lg bg-white border-black transition-transform duration-300 ease-in-out transform hover:scale-110"
                 src="/adminfolder/userPublic.png"
                 height={40}
                 width={40}
@@ -101,7 +152,7 @@ export default function RootLayout({
             </Link>
             <span>{username || "Loading..."}</span>
             <img
-              className="p-3 border-2 rounded-lg bg-white border-black cursor-pointer"
+              className="p-3 border-2 rounded-lg bg-white border-black cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110"
               src="/adminfolder/drop-down.png"
               height={40}
               width={40}
@@ -110,7 +161,7 @@ export default function RootLayout({
             />
           </div>
           {showDropdown && (
-            <div className="absolute top-16 right-4 bg-white shadow-md rounded-lg py-2 z-50">
+            <div className="absolute top-16 right-4 bg-white shadow-md rounded-lg py-2 z-50 transition-all duration-300 ease-in-out transform">
               <button
                 onClick={handleLogout}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
@@ -121,7 +172,8 @@ export default function RootLayout({
           )}
         </div>
 
-        <div className="pl-[30px] pt-4 h-[90vh] overflow-y-scroll w-full">
+        {/* Main Content Area with Fade-In Animation */}
+        <div className="pl-[30px] pt-4 h-[90vh] overflow-y-scroll w-full animate-fadeIn">
           {children}
         </div>
       </div>

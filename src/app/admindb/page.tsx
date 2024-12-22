@@ -509,9 +509,6 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
           "71-90": 0,
         });
 
-        console.log('Gender Counts:', genderCounts); 
-        console.log('Education Counts:', educationCounts); 
-        console.log('Age Counts:', ageCounts); 
 
         setGenderCounts(genderCounts); 
         setEducationCounts(educationCounts);
@@ -766,44 +763,36 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="uppercase font-bold text-2xl">
+    <div className="flex flex-col animate-fadeIn">
+      <div className="uppercase font-bold text-2xl text-center mb-6 animate-slideIn">
         <p>Admin Dashboard</p>
       </div>
-      
-      <div className="flex">
+
+      <div className="flex animate-slideIn">
         <div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-blue">
+          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-blue transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployed Male</p>
             <div className="mt-6 text-center font-semibold text-2xl">
-            <p>{genderCounts.male.toLocaleString()}</p>
-              <div className="items-center">
-              </div>
+              <p>{genderCounts.male.toLocaleString()}</p>
             </div>
           </div>
-
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-red">
+          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-red transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployed Female</p>
             <div className="mt-6 text-center font-semibold text-2xl">
               <p>{genderCounts.female.toLocaleString()}</p>
-              <div className="flex items-center">
-              </div>
             </div>
           </div>
         </div>
         <div className="rounded-lg border-black border-2 w-[550px] h-[316px] p-4 text-sm font-bold flex m-4 uppercase">
           <p>Educational Attainment</p>
           <div className="w-full h-full ">
-          {isEducationLoading ? (
-        <ChartLoadingState />
-      ) : (
-            <Doughnut data={chartDataDummy} options={options} 
-            />
-          )}
+            {isEducationLoading ?
+              <ChartLoadingState />
+            : <Doughnut data={chartDataDummy} options={options} />}
           </div>
         </div>
         <div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center">
+          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Economic Growth Rate</p>
             <div className="mt-6 text-center font-semibold text-2xl">
               <p>9.9%</p>
@@ -813,7 +802,7 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
               </div>
             </div>
           </div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center">
+          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployment Rate</p>
             <div className="mt-6 text-center font-semibold text-2xl">
               <p>4.35%</p>
@@ -827,77 +816,97 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
         <div className="rounded-lg border-black border-2 w-[550px] h-[316px] p-4 text-sm font-bold m-4 flex uppercase">
           <p>Age Range Unemployment</p>
           <div className="w-full h-full">
-          {isAgeLoading ? (
-        <ChartLoadingState />
-      ) : (
-            <Doughnut data={ageChartData} options={ageOptions} />
-       )} </div>
+            {isAgeLoading ?
+              <ChartLoadingState />
+            : <Doughnut data={ageChartData} options={ageOptions} />}{" "}
+          </div>
         </div>
       </div>
       <div className="flex flex-col mr-6 ml-4">
-
         <div className="rounded-lg border-black  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
           <h2 className="text-md font-semibold">Data Forecasting</h2>
-          <p className="text-xs mb-4">Impact of Individual Factors on Unemployment</p>
+          <p className="text-xs mb-4">
+            Impact of Individual Factors on Unemployment
+          </p>
           <div className="h-[300px] w-full flex justify-center">
-          {isLoading ? (
-          <ChartLoadingState />
-        ) : (
-            <Bar
-                data={unemploymentChartData as ChartData<"bar", (number | [number, number] | Point | BubbleDataPoint | null)[], unknown>}
+            {isLoading ?
+              <ChartLoadingState />
+            : <Bar
+                data={
+                  unemploymentChartData as ChartData<
+                    "bar",
+                    (
+                      | number
+                      | [number, number]
+                      | Point
+                      | BubbleDataPoint
+                      | null
+                    )[],
+                    unknown
+                  >
+                }
                 options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        },
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      beginAtZero: true,
                     },
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
+                  },
+                  plugins: {
+                    legend: {
+                      position: "top",
                     },
+                  },
                 }}
-            />
-        )}
+              />
+            }
           </div>
         </div>
       </div>
       <div className="flex mr-4 ml-2">
         <div className="rounded-lg border-black  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
           <h2 className="text-md font-semibold mb-2">Correlation Matrix</h2>
-          {isLoading ? (
-      <ChartLoadingState />
-    ) : (
-          <ApexChart />
-        )}
+          {isLoading ?
+            <ChartLoadingState />
+          : <ApexChart />}
         </div>
         <div className=" rounded-lg border-black  border-2 w-1/2 h-[400px] p-4 font-semibold m-2 flex flex-col">
           <p className="text-md">Prediction Analysis</p>
           <p className="text-xs font-normal">
-          GDP Economic Growth vs Unemployment Rate
+            GDP Economic Growth vs Unemployment Rate
           </p>
           <div className=" flex items-center w-full h-full">
-          {isGDPLoading ? (
-        <ChartLoadingState />
-      ) : (
-            <Bar
-                data={gdpChartData as ChartData<"bar", (number | [number, number] | Point | BubbleDataPoint | null)[], unknown>}
+            {isGDPLoading ?
+              <ChartLoadingState />
+            : <Bar
+                data={
+                  gdpChartData as ChartData<
+                    "bar",
+                    (
+                      | number
+                      | [number, number]
+                      | Point
+                      | BubbleDataPoint
+                      | null
+                    )[],
+                    unknown
+                  >
+                }
                 options={{
                   responsive: true,
                   plugins: {
                     legend: {
-                      position: 'top',
+                      position: "top",
                     },
                     title: {
                       display: true,
-                      text: 'GDP Economic Growth vs Unemployment Rate',
+                      text: "GDP Economic Growth vs Unemployment Rate",
                     },
                   },
                 }}
-            />
-              )}
+              />
+            }
           </div>
         </div>
       </div>
