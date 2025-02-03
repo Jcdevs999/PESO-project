@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <div className="z-20 grid grid-cols-[230px_1fr]">
       {/* Sidebar */}
-      <div className="h-screen bg-qc-blue border-r-2 flex p-4 border-r-black font-semibold text-sm">
+      <div className="h-screen bg-qc-blue flex p-4 border-r-black font-semibold text-sm">
         <div className="flex items-left gap-6 flex-col w-full">
           <div className="ml-5">
             <Link href="/admindb">
@@ -139,11 +139,11 @@ export default function RootLayout({
 
       {/* Main Content */}
       <div className="flex flex-col grow h-full w-full">
-        <div className="h-5 text-white p-4 bg-qc-red border-b-2 border-b-black flex justify-end items-center uppercase md:h-16 lg:px-10 w-full">
+        <div className="h-5 text-white p-4 bg-qc-red border-b-2 border-b-red-600 flex justify-end items-center uppercase md:h-16 lg:px-10 w-full">
           <div className="flex items-center space-x-4">
             <Link href="/user/">
               <img
-                className="p-1 border-2 rounded-lg bg-white border-black transition-transform duration-300 ease-in-out transform hover:scale-110"
+                className="p-1 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-110"
                 src="/adminfolder/userPublic.png"
                 height={40}
                 width={40}
@@ -152,7 +152,7 @@ export default function RootLayout({
             </Link>
             <span>{username || "Loading..."}</span>
             <img
-              className="p-3 border-2 rounded-lg bg-white border-black cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110"
+              className="p-3 rounded-lg bg-transparent cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110"
               src="/adminfolder/drop-down.png"
               height={40}
               width={40}

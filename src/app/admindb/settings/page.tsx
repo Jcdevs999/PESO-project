@@ -1,7 +1,48 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, {useState} from "react";
 
 const profileSettings = () => {
+
+   const [profilePicture, setProfilePicture] = useState(
+     "/adminfolder/user.png"
+   );
+   const [name, setName] = useState("John Lemon");
+   const [email, setEmail] = useState("JohnLemon@gmail.com");
+   const [contacts, setContacts] = useState("Null");
+
+   const [isEditingName, setIsEditingName] = useState(false);
+   const [isEditingEmail, setIsEditingEmail] = useState(false);
+   const [isEditingContacts, setIsEditingContacts] = useState(false);
+
+   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+     if (event.target.files && event.target.files[0]) {
+       const file = event.target.files[0];
+       const reader = new FileReader();
+
+       reader.onloadend = () => {
+         setProfilePicture(reader.result as string);
+       };
+
+       reader.readAsDataURL(file);
+     }
+   };
+
+   const handleDelete = () => {
+     setProfilePicture("/adminfolder/user.png");
+   };
+
+   const handleSave = (field: "name" | "email" | "contacts", value: string) => {
+     if (field === "name") setName(value);
+     if (field === "email") setEmail(value);
+     if (field === "contacts") setContacts(value);
+
+     setIsEditingName(false);
+     setIsEditingEmail(false);
+     setIsEditingContacts(false);
+   };
+
   return (
     <div className="m-6">
       <div className="flex flex-col w-full border border-gray-300 p-6 rounded-xl shadow-md transition-all duration-500 ease-in-out">
@@ -11,13 +52,16 @@ const profileSettings = () => {
             <div className="border-gray-400">
               <div className="h-[200px] w-[200px] border-4 border-gray-500 rounded-full overflow-hidden shadow-inner">
                 <img
-                  src="/adminfolder/user.png"
+                  src={profilePicture}
                   alt="Profile"
                   className="w-full h-full rounded-full"
                 />
               </div>
               <div className="flex justify-center mt-6 p-2">
-                <button className="border-2 mr-4 border-gray-400 bg-red-500 rounded-full p-2 hover:bg-red-600">
+                <button
+                  className="border-2 mr-4 border-gray-400 bg-red-500 rounded-full p-2 hover:bg-red-600"
+                  onClick={handleDelete}
+                >
                   <img
                     src="/adminfolder/clear.png"
                     height={50}
@@ -25,51 +69,82 @@ const profileSettings = () => {
                     alt="Clear"
                   />
                 </button>
-                <button className="border-[1px] border-gray-400 rounded-full hover:bg-gray-800 hover:text-white p-2 transition-colors">
+                <label className="border-[1px] border-gray-400 rounded-full hover:bg-gray-800 hover:text-white p-2 transition-colors cursor-pointer">
                   <p className="text-md font-semibold pl-4 pr-4">Upload</p>
-                </button>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleUpload}
+                  />
+                </label>
               </div>
             </div>
           </div>
           <div className="flex flex-col w-full mt-12">
             <div className="w-full mb-6">
               <p className="font-semibold text-2xl text-gray-800">Name:</p>
-              <div className="flex">
-                <p className="w-full mt-2 text-lg text-gray-500">John Lemon</p>
+              <div className="flex items-center">
+                {isEditingName ?
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full mt-2 text-lg border-b-2 border-gray-400 focus:outline-none"
+                  />
+                : <p className="w-full mt-2 text-lg text-gray-500">{name}</p>}
                 <img
                   src="/adminfolder/editing.png"
                   height={30}
                   width={30}
                   alt="Edit"
                   className="cursor-pointer"
+                  onClick={() => setIsEditingName(!isEditingName)}
                 />
               </div>
             </div>
             <div className="w-full mb-6">
               <p className="font-semibold text-2xl text-gray-800">Email:</p>
-              <div className="flex">
-                <p className="w-full mt-2 text-lg text-gray-500">
-                  JohnLemon@gmail.com
-                </p>
+              <div className="flex items-center">
+                {isEditingEmail ?
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full mt-2 text-lg border-b-2 border-gray-400 focus:outline-none"
+                  />
+                : <p className="w-full mt-2 text-lg text-gray-500">{email}</p>}
                 <img
                   src="/adminfolder/editing.png"
                   height={30}
                   width={30}
                   alt="Edit"
                   className="cursor-pointer"
+                  onClick={() => setIsEditingEmail(!isEditingEmail)}
                 />
               </div>
             </div>
             <div className="w-full mb-6">
               <p className="font-semibold text-2xl text-gray-800">Contacts:</p>
-              <div className="flex">
-                <p className="w-full mt-2 text-lg text-gray-500">Null</p>
+              <div className="flex items-center">
+                {isEditingContacts ?
+                  <input
+                    type="text"
+                    value={contacts}
+                    onChange={(e) => setContacts(e.target.value)}
+                    className="w-full mt-2 text-lg border-b-2 border-gray-400 focus:outline-none"
+                  />
+                : <p className="w-full mt-2 text-lg text-gray-500">
+                    {contacts}
+                  </p>
+                }
                 <img
                   src="/adminfolder/editing.png"
                   height={30}
                   width={30}
                   alt="Edit"
                   className="cursor-pointer"
+                  onClick={() => setIsEditingContacts(!isEditingContacts)}
                 />
               </div>
             </div>

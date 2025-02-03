@@ -119,45 +119,45 @@ const data = [
 ];
 
 const page = () => {
-  const [unemploymentChartData, setUnemploymentChartData] = useState<ChartData>(
+ const [unemploymentChartData, setUnemploymentChartData] = useState<ChartData>({
+  labels: ["2024", "2025", "2026"],
+  datasets: [
     {
-      labels: ["2024", "2025", "2026"], // Update this dynamically if needed
-      datasets: [
-        {
-          label: "Unemployment Predictions",
-          data: [],
-          backgroundColor: "#c0161b",
-          borderColor: "#c0161b",
-          borderWidth: 1.5,
-        },
-        {
-          label: "Predicted GDP Growth",
-          data: [],
-          backgroundColor: "rgb(1, 55, 173)",
-          borderColor: "rgb(1, 55, 173)",
-          borderWidth: 1.5,
-        },
-        {
-          label: "Female Unemployment Predictions",
-          data: [],
-          backgroundColor: "rgb(255, 107, 107)",
-          borderColor: "rgb(255, 107, 107)",
-          borderWidth: 1.5,
-        },
-        {
-          label: "Male Unemployment Predictions",
-          data: [],
-          backgroundColor: "rgb(59, 142, 212)",
-          borderColor: "rgb(59, 142, 212)",
-          borderWidth: 1.5,
-        },
-        {
-          label: "Educational Attainment Predictions",
-          data: [],
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
-          borderColor: "rgba(54, 162, 235, 1)",
-          borderWidth: 1,
-        },
+      label: "Unemployment Predictions",
+      data: [5.4, 5.1, 4.9],
+      backgroundColor: "rgba(192, 22, 27, 0.6)",
+      borderColor: "#c0161b",
+      borderWidth: 1.5,
+    },
+    {
+      label: "Predicted GDP Growth",
+      data: [2.3, 2.5, 2.7],
+      backgroundColor: "rgba(1, 55, 173, 0.6)",
+      borderColor: "rgb(1, 55, 173)",
+      borderWidth: 1.5,
+    },
+    {
+      label: "Female Unemployment Predictions",
+      data: [5.1, 5.0, 4.8],
+      backgroundColor: "rgba(255, 107, 107, 0.6)",
+      borderColor: "rgb(255, 107, 107)",
+      borderWidth: 1.5,
+    },
+    {
+      label: "Male Unemployment Predictions",
+      data: [5.7, 5.3, 5.0],
+      backgroundColor: "rgba(59, 142, 212, 0.6)",
+      borderColor: "rgb(59, 142, 212)",
+      borderWidth: 1.5,
+    },
+    {
+      label: "Educational Attainment Predictions",
+      data: [3.5, 3.7, 3.8],
+      backgroundColor: "rgba(54, 162, 235, 0.2)",
+      borderColor: "rgba(54, 162, 235, 1)",
+      borderWidth: 1,
+    },
+
 
         // // Age group datasets
         // {
@@ -553,31 +553,31 @@ const page = () => {
                 from: -0.5,
                 to: -0.1,
                 name: "negligible",
-                color: "#F8D1CD",
+                color: "#001A6E",
               },
               {
                 from: -1.0,
                 to: -0.6,
                 name: "low",
-                color: "#F0A8AB",
+                color: "#0B598D",
               },
               {
                 from: 0.0,
                 to: 0.0,
                 name: "no correlation",
-                color: "#FFFAF0",
+                color: "#F5EFE7",
               },
               {
                 from: 0.1,
                 to: 0.5,
                 name: "high",
-                color: "#E15566",
+                color: "#08436A",
               },
               {
                 from: 0.6,
                 to: 1.0,
                 name: "extreme",
-                color: "#DA2C43",
+                color: "#063250",
               },
             ],
           },

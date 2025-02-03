@@ -5,6 +5,7 @@ import Link from "next/link";
 import LoginPage from "../login/page";
 import Searchbar from "@/components/Searchbar";
 import { UserProvider } from "@/context/qwert";
+import Image from "next/image";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,14 +21,14 @@ export default function RootLayout({
   const user = false;
   return (
     <div>
-      <div className="h-12 text-white p-3 flex items-center justify-between bg-qc-blue border-b-2 border-b-white uppercase md:h-24 lg:px-20 xl:px-10">
+      <div className="h-12 text-white p-3 flex items-center justify-between bg-qc-blue border-b-white uppercase md:h-24 lg:px-20 xl:px-10">
         {/* LEFT LINKS */}
         <Link href="/user">
           <img
             src="/pics/qc_logo.png"
             alt="Quezon City logo"
-            width="80"
-            height="80"
+            width={100}
+            height={100}
           />
         </Link>
         <div className="flex items-left ml-14 gap-20 flex-row w-full">
@@ -37,12 +38,12 @@ export default function RootLayout({
           >
             Home
           </Link>
-          <Link
+          {/* <Link
             href="/user/forecast"
             className="transition-all duration-300 transform hover:scale-110 hover:text-gray-300"
           >
             Forecast
-          </Link>
+          </Link> */}
           {/* <Link href="/user/news">News</Link> */}
           <Link
             href="/user/about"
@@ -58,11 +59,11 @@ export default function RootLayout({
           </div>
         </div>
         <Link href="/admindb/">
-          <img
+          <Image
             className="p-1 border-2 rounded-full bg-white border-black"
             src="/adminfolder/admin-moderator.png"
-            height={60}
-            width={60}
+            height={50}
+            width={50}
             alt=""
           />
         </Link>
@@ -74,7 +75,7 @@ export default function RootLayout({
       </UserProvider>
 
       <div>
-        <div className="md:h-20 lg:p-20 xl:p-36 bg-qc-blue border-b-4 border-b-gray-200 text-white items-center justify-items-left grid grid-rows-3 grid-flow-col gap-8">
+        <div className="md:h-20 lg:p-20 xl:p-36 bg-qc-blue border-b-gray-200 text-white items-center justify-items-left grid grid-rows-3 grid-flow-col gap-8">
           <Link className="absolute -ml-20" href="/user">
             <img
               src="/pics/qc_logo.png"

@@ -20,6 +20,7 @@ import axios from "axios";
 import moment from "moment";
 import { Pie, getElementAtEvent, Line } from "react-chartjs-2";
 import Doughtnut from "chart.js/auto";
+import { Csdata } from "@/qcdata";
 
 ChartJS.register(
   ArcElement,

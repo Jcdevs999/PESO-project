@@ -538,8 +538,9 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
       }))
     : [];
 
-  const chartDataDummy = educationCounts
-    ? {
+  const chartDataDummy =
+    educationCounts ?
+      {
         labels: [
           "Elementary Level",
           "Elementary Graduate",
@@ -551,35 +552,34 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
           "Vocational Graduate",
           "College Level",
           "College Graduate",
-
         ],
         datasets: [
           {
             label: `Poll`,
             data: chartData.map((item) => item.value),
             backgroundColor: [
-              "#FF573380",  // Soft Orange
-              "#33FF5780",  // Light Green
-              "#3357FF80",  // Sky Blue
-              "#FF33AA80",  // Pink
-              "#FFD13380",  // Golden Yellow
-              "#8D33FF80",  // Purple
-              "#33FFF180",  // Cyan
-              "#FF963380",  // Peach
-              "#A8FF3380",  // Lime Green
-              "#FF336080",  // Rosy Red
+              "#001A6E", 
+              "#074799", 
+              "#2E5077", 
+              "#4DA1A9", 
+              "#3E5879", 
+              "#001F3F", 
+              "#3A6D8C", 
+              "#6A9AB0", 
+              "#4C585B", 
+              "#A5BFCC", 
             ],
             borderColor: [
-              "#FF573380",  // Soft Orange
-              "#33FF5780",  // Light Green
-              "#3357FF80",  // Sky Blue
-              "#FF33AA80",  // Pink
-              "#FFD13380",  // Golden Yellow
-              "#8D33FF80",  // Purple
-              "#33FFF180",  // Cyan
-              "#FF963380",  // Peach
-              "#A8FF3380",  // Lime Green
-              "#FF336080",  // Rosy Red
+              "#001A6E", 
+              "#074799", 
+              "#2E5077", 
+              "#4DA1A9", 
+              "#3E5879", 
+              "#001F3F", 
+              "#3A6D8C", 
+              "#6A9AB0", 
+              "#4C585B", 
+              "#A5BFCC", 
             ],
           },
         ],
@@ -604,26 +604,27 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
     },
   };
 
-  const ageChartData = ageCounts
-    ? {
+  const ageChartData =
+    ageCounts ?
+      {
         labels: Object.keys(ageCounts),
         datasets: [
           {
             label: "Age Range",
             data: Object.values(ageCounts),
             backgroundColor: [
-              "#A3C6E0",  // Light Blue
-              "#4A90E2",  // Bright Blue
-              "#0137AD",  // Dark Blue
-              "#FF9999",  // Soft Red
-              "#D01027",  // Darkest Red
+              "#800000", // Light Blue
+              "#982B1C", // Bright Blue
+              "#940000", // Dark Blue
+              "#560D0D", // Soft Red
+              "#C30101", // Darkest Red
             ],
             borderColor: [
-              "#A3C6E0",  // Light Blue
-              "#4A90E2",  // Bright Blue
-              "#0137AD",  // Dark Blue
-              "#FF9999",  // Soft Red
-              "#D01027",  // Darkest Red
+              "#800000", // Light Blue
+              "#982B1C", // Bright Blue
+              "#940000", // Dark Blue
+              "#560D0D", // Soft Red
+              "#C30101", // Darkest Red
             ],
           },
         ],
@@ -770,20 +771,20 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
 
       <div className="flex animate-slideIn">
         <div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-blue transition-transform transform hover:scale-105 hover:shadow-xl">
+          <div className="rounded-lg border-gray-300 border-2 text-white  w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center bg-[#3E5879] transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployed Male</p>
-            <div className="mt-6 text-center font-semibold text-2xl">
+            <div className="mt-6 text-center font-semibold text-white text-2xl">
               <p>{genderCounts.male.toLocaleString()}</p>
             </div>
           </div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-sm font-bold flex flex-col m-4 uppercase text-center bg-qc-light-red transition-transform transform hover:scale-105 hover:shadow-xl">
+          <div className="rounded-lg border-gray-300 border-2 text-white w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center bg-[#3E5879] transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployed Female</p>
-            <div className="mt-6 text-center font-semibold text-2xl">
+            <div className="mt-6 text-center font-semibold text-white text-2xl">
               <p>{genderCounts.female.toLocaleString()}</p>
             </div>
           </div>
         </div>
-        <div className="rounded-lg border-black border-2 w-[550px] h-[316px] p-4 text-sm font-bold flex m-4 uppercase">
+        <div className="rounded-lg border-gray-300 border-2 w-[550px] h-[316px] p-4 text-xs font-bold flex m-4 uppercase">
           <p>Educational Attainment</p>
           <div className="w-full h-full ">
             {isEducationLoading ?
@@ -792,7 +793,7 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
           </div>
         </div>
         <div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
+          <div className="rounded-lg border-gray-300 border-2 w-[200px] h-[150px] p-4 text-xs font-bold bg-[#C62E2E] flex flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Economic Growth Rate</p>
             <div className="mt-6 text-center font-semibold text-2xl">
               <p>9.9%</p>
@@ -802,7 +803,7 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
               </div>
             </div>
           </div>
-          <div className="rounded-lg border-black border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
+          <div className="rounded-lg border-gray-300 border-2 w-[200px] h-[150px] p-4 text-xs font-bold flex bg-[#C62E2E] flex-col m-4 uppercase text-center transition-transform transform hover:scale-105 hover:shadow-xl">
             <p>Unemployment Rate</p>
             <div className="mt-6 text-center font-semibold text-2xl">
               <p>4.35%</p>
@@ -813,7 +814,7 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
             </div>
           </div>
         </div>
-        <div className="rounded-lg border-black border-2 w-[550px] h-[316px] p-4 text-sm font-bold m-4 flex uppercase">
+        <div className="rounded-lg border-gray-300 border-2 w-[550px] h-[316px] p-4 text-xs font-bold m-4 flex uppercase">
           <p>Age Range Unemployment</p>
           <div className="w-full h-full">
             {isAgeLoading ?
@@ -823,7 +824,7 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
         </div>
       </div>
       <div className="flex flex-col mr-6 ml-4">
-        <div className="rounded-lg border-black  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
+        <div className="rounded-lg border-gray-300  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
           <h2 className="text-md font-semibold">Data Forecasting</h2>
           <p className="text-xs mb-4">
             Impact of Individual Factors on Unemployment
@@ -865,13 +866,13 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
         </div>
       </div>
       <div className="flex mr-4 ml-2">
-        <div className="rounded-lg border-black  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
+        <div className="rounded-lg border-gray-300  border-2 w-full h-[400px] p-4 text-md flex flex-col my-2">
           <h2 className="text-md font-semibold mb-2">Correlation Matrix</h2>
           {isLoading ?
             <ChartLoadingState />
           : <ApexChart />}
         </div>
-        <div className=" rounded-lg border-black  border-2 w-1/2 h-[400px] p-4 font-semibold m-2 flex flex-col">
+        <div className=" rounded-lg border-gray-300  border-2 w-1/2 h-[400px] p-4 font-semibold m-2 flex flex-col">
           <p className="text-md">Prediction Analysis</p>
           <p className="text-xs font-normal">
             GDP Economic Growth vs Unemployment Rate
