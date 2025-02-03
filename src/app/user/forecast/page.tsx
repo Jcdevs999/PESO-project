@@ -118,7 +118,7 @@ const data = [
   },
 ];
 
-const page = () => {
+const ForecastPage = () => {
  const [unemploymentChartData, setUnemploymentChartData] = useState<ChartData>({
   labels: ["2024", "2025", "2026"],
   datasets: [
@@ -812,4 +812,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ForecastPage;

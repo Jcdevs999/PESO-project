@@ -86,7 +86,7 @@ interface GDPData {
   actualGDP: number;
 }
 
-  const admindbPage = () => {
+  const AdmindbPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isGDPLoading, setIsGDPLoading] = useState(true);
   const [isEducationLoading, setIsEducationLoading] = useState(true);
@@ -914,4 +914,4 @@ const ageGroupPredictions = denormalizedPredictions.map(totalUnemployed => ({
     </div>
   );
 };
-export default admindbPage;
+export default AdmindbPage;

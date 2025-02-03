@@ -373,15 +373,6 @@ const Filters = () => {
             ],
             borderColor: ["#000"],
             borderWidth: 1,
-            tooltip: {
-              callbacks: {
-                label: (tooltipItem: TooltipItem<"pie">) => {
-                  // Specify the type here
-                  const ageRange = ageRanges[tooltipItem.dataIndex];
-                  return `${ageRange.range}: ${tooltipItem.raw}`;
-                },
-              },
-            },
           },
         ],
       };
@@ -496,16 +487,6 @@ const Filters = () => {
             "#FFFFFF",
             ],
             borderWidth: 2,
-
-            tooltip: {
-              callbacks: {
-                label: (tooltipItem: TooltipItem<"pie">) => {
-                  // Specify the type here
-                  const educ = educationalLevel[tooltipItem.dataIndex];
-                  return `${educ}: ${tooltipItem.raw}`;
-                },
-              },
-            },
           },
         ],
       };
@@ -545,15 +526,6 @@ const Filters = () => {
             ],
             borderColor: ["#FFFFFF"], // Black border for visibility
             borderWidth: 2,
-            tooltip: {
-              callbacks: {
-                label: (tooltipItem: TooltipItem<"pie">) => {
-                  // Specify the type here
-                  const skill = skillsOptions[tooltipItem.dataIndex];
-                  return `${skill}: ${tooltipItem.raw}`;
-                },
-              },
-            },
           },
         ],
       };

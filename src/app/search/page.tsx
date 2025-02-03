@@ -14,37 +14,7 @@ const SearchPage = () => {
   const search = searchParams ? searchParams.get("q") : null;
 
   const [searchNews, setSearchNews] = useState<any[]>([]);
-  //   useEffect(() => {
-  //     const controller = new AbortController();
-  //     const signal = controller.signal;
-
-  //     const getNews = async () => {
-  //       try {
-  //         setLoading(true);
-  //         const response = await axios.get(
-  //           "https://newsapi.org/v2/everything?q=education&apiKey=ff4d356650cf48c0bd58a0575e13ee06"
-  //         );
-  //         const responseToJson = await response.json();
-  //         const randomArticle: news[] = responseToJson?.articles;
-  //         const filterArticles = randomArticle.filter(
-  //           (article) => article?.source.id !== null
-  //         );
-  //         setLoading(false);
-  //         setNewsData(filterArticles);
-  //       } catch (error) {
-  //         if (typeof error == "object" && error !== null) {
-  //           console.error(error.toString());
-  //         } else {
-  //           //("Unexpected error", error);
-  //         }
-  //       }
-  //       getNews();
-
-  //       return () => {
-  //         controller.abort();
-  //       };
-  //     };
-  //   }, [search]);
+ 
   useEffect(() => {
     const getNewsUnder = async () => {
       try {
@@ -52,7 +22,9 @@ const SearchPage = () => {
           `https://newsapi.org/v2/everything?q=${searchInput}&apiKey=ff4d356650cf48c0bd58a0575e13ee06`
         );
         setSearchNews(response.data.articles);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
     };
     getNewsUnder();
   }, [searchInput]);
